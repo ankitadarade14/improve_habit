@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Improve Habits</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">Improve Habits</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <h1>Create Account</h1>
+            <p class="auth-subtitle">Join us and improve your habits</p>
+
+            <label>Email</label>
+            <input type="email" id="signupEmail" placeholder="Enter your email">
+
+            <label>Password</label>
+            <input type="password" id="signupPassword" placeholder="Enter password (min 6 characters)">
+
+            <button class="auth-button" onclick="signup()">Sign Up</button>
+
+            <div class="auth-footer">
+                <p>Already have account? <a href="login.html">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBTMMoDy0zZuKBQ_fsJsn0JqY7OHfmZHWU",
+            authDomain: "improve-habits.firebaseapp.com",
+            projectId: "improve-habits",
+            storageBucket: "improve-habits.firebasestorage.app",
+            messagingSenderId: "576467986044",
+            appId: "1:576467986044:web:052ec7fc1d00344ea20bf9",
+            measurementId: "G-JSBR4T295F"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        window.signup = function () {
+            const email = document.getElementById("signupEmail").value;
+            const password = document.getElementById("signupPassword").value;
+
+            if (!email || !password) {
+                alert("Please fill all fields");
+                return;
+            }
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    alert("Account created successfully!");
+                    window.location.href = "login.html";
+                })
+                .catch((error) => {
+                    alert("Error: " + error.message);
+                });
+        };
+    </script>
+
+</body>
+
+</html>

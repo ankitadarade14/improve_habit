@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Today's Tasks | Improve Habits</title>
+
+    <link rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            Improve Habits
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="todo.html">
+                To-Do
+            </a>
+
+            <a href="books.html">
+                Books
+            </a>
+
+            <a href="index.html">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+    <main class="todo-container">
+
+        <div class="todo-header">
+
+            <h1>
+                Today's Tasks
+            </h1>
+
+            <p>
+                Add, organize and complete your daily tasks.
+            </p>
+
+        </div>
+
+        <div class="todo-card">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="What do you want to accomplish today?">
+
+            <button onclick="addTask()">
+                Add Task
+            </button>
+
+            <ul id="taskList"></ul>
+
+        </div>
+
+    </main>
+
+
+    <!-- Firebase + To-Do JavaScript -->
+    <script type="module" src="script.js"></script>
+
+</body>
+
+</html>

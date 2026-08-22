@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Improve Habits</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">Improve Habits</div>
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="todo.html">To-Do</a>
+            <a href="books.html">Books</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    </nav>
+
+    <section class="dashboard-hero">
+        <h1>Welcome Back 👋 <span id="userName"></span></h1>
+        <p>Build better habits by completing your tasks and reading every day.</p>
+    </section>
+
+    <section class="dashboard-cards">
+        <div class="dashboard-card">
+            <h2>✓ Today's Tasks</h2>
+            <p>Organize your daily tasks and stay productive.</p>
+            <a class="card-button" href="todo.html">Open Tasks</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>📚 Personal Growth Library</h2>
+            <p>Read books and improve yourself every day.</p>
+            <a class="card-button" href="books.html">Open Library</a>
+        </div>
+    </section>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBTMMoDy0zZuKBQ_fsJsn0JqY7OHfmZHWU",
+            authDomain: "improve-habits.firebaseapp.com",
+            projectId: "improve-habits",
+            storageBucket: "improve-habits.firebasestorage.app",
+            messagingSenderId: "576467986044",
+            appId: "1:576467986044:web:052ec7fc1d00344ea20bf9",
+            measurementId: "G-JSBR4T295F"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Check user logged in or not
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById("userName").textContent = user.email;
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        // Logout function
+        window.logout = function () {
+            signOut(auth).then(() => {
+                alert("Logged out!");
+                window.location.href = "index.html";
+            }).catch((error) => {
+                alert("Error: " + error.message);
+            });
+        };
+    </script>
+
+</body>
+
+</html>
